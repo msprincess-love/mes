@@ -1,0 +1,53 @@
+package com.ktg.mes.md.domain.dv;
+
+import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
+
+import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+/**
+ * @author zhstart_bytedance
+ * @version 1.0
+ * @date 2023/4/11 11:29
+ * @description mes
+ */
+@Data
+public class DvCheckSubject {
+
+    @TableId
+    private String recordId;
+
+    private String planId;
+
+    private String subjectId;
+
+    private String subjectCode;
+
+    private String subjectName;
+
+    private String subjectType;
+
+    private String subjectContent;
+
+    private String subjectStandard;
+
+    private String remark;
+
+    private String attr1;
+
+    private String attr2;
+
+    private Integer attr3;
+
+    private Integer attr4;
+
+    private String createBy;
+
+    private LocalDateTime createTime;
+
+    private String updateBy;
+
+}

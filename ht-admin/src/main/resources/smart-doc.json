@@ -1,0 +1,29 @@
+{
+  "serverUrl": "http://localhost:9090",
+  "isStrict": false,
+  "allInOne": true,
+  "outPath": "/Users/xiaozhe/Desktop/MES系统/ktg/doc",
+  "coverOld": true,
+  "createDebugPage": true,
+  "packageFilters": "",
+  "md5EncryptedHtmlName": false,
+  "projectName": "测试项目名称",
+  "style":"xt256",
+  "createDebugPage": false,
+  "skipTransientField": true,
+  "requestHeaders": [
+    {
+      "name": "token",
+      "type": "string",
+      "desc": "desc",
+      "required": false,
+      "since": "-"
+    }
+  ],
+  "sourceCodePaths": [
+    {
+      "path": "../ht-mes/src/main/java",
+      "desc": "测试路径"
+    }
+  ]
+}

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ktg.mes.md.mapper.md.MdItemTypeMapper">
+    <resultMap type="MdItemType" id="MdItemTypeResult">
+        <result property="itemTypeId"    column="item_type_id"    />
+        <result property="itemTypeCode"    column="item_type_code"    />
+        <result property="itemTypeName"    column="item_type_name"    />
+        <result property="parentTypeId"    column="parent_type_id"    />
+        <result property="ancestors"    column="ancestors"    />
+        <result property="itemOrProduct"    column="item_or_product"    />
+        <result property="orderNum"    column="order_num"    />
+        <result property="enableFlag"    column="enable_flag"    />
+        <result property="remark"    column="remark"    />
+        <result property="attr1"    column="attr1"    />
+        <result property="attr2"    column="attr2"    />
+        <result property="attr3"    column="attr3"    />
+        <result property="attr4"    column="attr4"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectMdItemTypeVo">
+        select item_type_id, item_type_code, item_type_name, parent_type_id, ancestors, item_or_product,
+               order_num, enable_flag, remark, attr1, attr2, attr3, attr4, create_by, create_time, update_by, update_time
+        from md_item_type
+    </sql>
+
+    <insert id="add" parameterType="MdItemType">
+        insert into md_item_type
+                <trim prefix="(" suffix=")" suffixOverrides=",">
+                    <if test="itemTypeCode != null and itemTypeCode != ''">item_type_code,</if>
+                    <if test="itemTypeName != null and itemTypeName != ''">item_type_name,</if>
+                    <if test="parentTypeId != null and parentTypeId != ''">parent_type_id,</if>
+                    <if test="ancestors != null">ancestors,</if>
+                    <if test="itemOrProduct != null">item_or_product,</if>
+                    <if test="orderNum != null">order_num,</if>
+                    <if test="enableFlag != null and enableFlag != ''">enable_flag,</if>
+                    <if test="remark != null">remark,</if>
+                    <if test="attr1 != null">attr1,</if>
+                    <if test="attr2 != null">attr2,</if>
+                    <if test="attr3 != null">attr3,</if>
+                    <if test="attr4 != null">attr4,</if>
+                    <if test="createBy != null">create_by,</if>
+                    <if test="createTime != null">create_time,</if>
+                    <if test="updateBy != null">update_by,</if>
+                    <if test="updateTime != null">update_time,</if>
+                </trim>
+                <trim prefix="values (" suffix=")" suffixOverrides=",">
+                    <if test="itemTypeCode != null and itemTypeCode != ''">#{itemTypeCode},</if>
+                    <if test="itemTypeName != null and itemTypeName != ''">#{itemTypeName},</if>
+                    <if test="parentTypeId != null and parentTypeId != ''">#{parentTypeId},</if>
+                    <if test="ancestors != null">#{ancestors},</if>
+                    <if test="itemOrProduct != null">#{itemOrProduct},</if>
+                    <if test="orderNum != null">#{orderNum},</if>
+                    <if test="enableFlag != null and enableFlag != ''">#{enableFlag},</if>
+                    <if test="remark != null">#{remark},</if>
+                    <if test="attr1 != null">#{attr1},</if>
+                    <if test="attr2 != null">#{attr2},</if>
+                    <if test="attr3 != null">#{attr3},</if>
+                    <if test="attr4 != null">#{attr4},</if>
+                    <if test="createBy != null">#{createBy},</if>
+                    <if test="createTime != null">#{createTime},</if>
+                    <if test="updateBy != null">#{updateBy},</if>
+                    <if test="updateTime != null">#{updateTime},</if>
+                </trim>
+    </insert>
+
+    <update id="edit">
+        update md_item_type
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="itemTypeCode != null and itemTypeCode != ''">item_type_code = #{itemTypeCode},</if>
+            <if test="itemTypeName != null and itemTypeName != ''">item_type_name = #{itemTypeName},</if>
+            <if test="parentTypeId != null and parentTypeId != ''">parent_type_id = #{parentTypeId},</if>
+            <if test="ancestors != null">ancestors = #{ancestors},</if>
+            <if test="itemOrProduct != null">item_or_product = #{itemOrProduct},</if>
+            <if test="orderNum != null">order_num = #{orderNum},</if>
+            <if test="enableFlag != null and enableFlag != ''">enable_flag = #{enableFlag},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="attr1 != null">attr1 = #{attr1},</if>
+            <if test="attr2 != null">attr2 = #{attr2},</if>
+            <if test="attr3 != null">attr3 = #{attr3},</if>
+            <if test="attr4 != null">attr4 = #{attr4},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where item_type_id = #{itemTypeId}
+    </update>
+
+    <delete id="removeById" parameterType="Long">
+        delete from md_item_type
+        where item_type_id = #{typeId};
+    </delete>
+
+    <select id="selectItemTypeList" parameterType="MdItemType" resultMap="MdItemTypeResult">
+        <include refid="selectMdItemTypeVo"/>
+        <where>
+            <if test="itemTypeName != null and itemTypeName != ''"> and item_type_name like concat('%', #{itemTypeName}, '%')</if>
+            <if test="enableFlag != null  and enableFlag != ''"> and enable_flag = #{enableFlag}</if>
+            <if test="attr1 != null  and attr1 != ''"> and attr1 = #{attr1}</if>
+            <if test="attr2 != null  and attr2 != ''"> and attr2 = #{attr2}</if>
+            <if test="attr3 != null "> and attr3 = #{attr3}</if>
+            <if test="attr4 != null "> and attr4 = #{attr4}</if>
+        </where>
+    </select>
+
+    <select id="selectItemTypeById" resultMap="MdItemTypeResult">
+        <include refid="selectMdItemTypeVo"/>
+        where item_type_id = #{typeId}
+    </select>
+
+    <select id="selectChildren" resultMap="MdItemTypeResult" parameterType="Long">
+        <include refid="selectMdItemTypeVo"/>
+        where parent_type_id = #{typeId}
+    </select>
+
+    <select id="listPage"  resultMap="MdItemTypeResult">
+        select * from md_item_type
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <insert id="insertMdUnitMeasure" parameterType="MdUnitMeasure" useGeneratedKeys="true" keyProperty="measureId">
+        insert into md_unit_measure
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="measureCode != null and measureCode != ''">measure_code,</if>
+            <if test="measureName != null and measureName != ''">measure_name,</if>
+            <if test="primaryFlag != null and primaryFlag != ''">primary_flag,</if>
+            <if test="primaryId != null">primary_id,</if>
+            <if test="changeRate != null">change_rate,</if>
+            <if test="enableFlag != null and enableFlag != ''">enable_flag,</if>
+            <if test="remark != null">remark,</if>
+            <if test="attr1 != null">attr1,</if>
+            <if test="attr2 != null">attr2,</if>
+            <if test="attr3 != null">attr3,</if>
+            <if test="attr4 != null">attr4,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="measureCode != null and measureCode != ''">#{measureCode},</if>
+            <if test="measureName != null and measureName != ''">#{measureName},</if>
+            <if test="primaryFlag != null and primaryFlag != ''">#{primaryFlag},</if>
+            <if test="primaryId != null">#{primaryId},</if>
+            <if test="changeRate != null">#{changeRate},</if>
+            <if test="enableFlag != null and enableFlag != ''">#{enableFlag},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="attr1 != null">#{attr1},</if>
+            <if test="attr2 != null">#{attr2},</if>
+            <if test="attr3 != null">#{attr3},</if>
+            <if test="attr4 != null">#{attr4},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+        </trim>
+    </insert>
+
+<!--    <update id="updateMdUnitMeasure" parameterType="MdUnitMeasure">-->
+<!--        update md_unit_measure-->
+<!--        <trim prefix="SET" suffixOverrides=",">-->
+<!--            <if test="measureCode != null and measureCode != ''">measure_code = #{measureCode},</if>-->
+<!--            <if test="measureName != null and measureName != ''">measure_name = #{measureName},</if>-->
+<!--            <if test="primaryFlag != null and primaryFlag != ''">primary_flag = #{primaryFlag},</if>-->
+<!--            <if test="primaryId != null">primary_id = #{primaryId},</if>-->
+<!--            <if test="changeRate != null">change_rate = #{changeRate},</if>-->
+<!--            <if test="enableFlag != null and enableFlag != ''">enable_flag = #{enableFlag},</if>-->
+<!--            <if test="remark != null">remark = #{remark},</if>-->
+<!--            <if test="attr1 != null">attr1 = #{attr1},</if>-->
+<!--            <if test="attr2 != null">attr2 = #{attr2},</if>-->
+<!--            <if test="attr3 != null">attr3 = #{attr3},</if>-->
+<!--            <if test="attr4 != null">attr4 = #{attr4},</if>-->
+<!--            <if test="createBy != null">create_by = #{createBy},</if>-->
+<!--            <if test="createTime != null">create_time = #{createTime},</if>-->
+<!--            <if test="updateBy != null">update_by = #{updateBy},</if>-->
+<!--            <if test="updateTime != null">update_time = #{updateTime},</if>-->
+<!--        </trim>-->
+<!--        where measure_id = #{measureId}-->
+<!--    </update>-->
+
+<!--    <delete id="deleteMdUnitMeasureByMeasureId" parameterType="Long">-->
+<!--        delete from md_unit_measure where measure_id = #{measureId}-->
+<!--    </delete>-->
+
+<!--    <delete id="deleteMdUnitMeasureByMeasureIds" parameterType="String">-->
+<!--        delete from md_unit_measure where measure_id in-->
+<!--        <foreach item="measureId" collection="array" open="(" separator="," close=")">-->
+<!--            #{measureId}-->
+<!--        </foreach>-->
+<!--    </delete>-->
+</mapper>

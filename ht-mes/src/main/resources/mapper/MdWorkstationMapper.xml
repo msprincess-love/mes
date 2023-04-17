@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ktg.mes.md.mapper.md.MdWorkstationMapper">
+    <resultMap type="MdWorkstation" id="MdWorkstationResult">
+        <result property="workstationId"    column="workstation_id"    />
+        <result property="workstationCode"    column="workstation_code"    />
+        <result property="workstationName"    column="workstation_name"    />
+        <result property="workstationAddress"    column="workstation_address"    />
+        <result property="workshopId"    column="workshop_id"    />
+        <result property="workshopCode"    column="workshop_code"    />
+        <result property="workshopName"    column="workshop_name"    />
+        <result property="processId"    column="process_id"    />
+        <result property="processCode"    column="process_code"    />
+        <result property="processName"    column="process_name"    />
+        <result property="warehouseId"    column="warehouse_id"    />
+        <result property="warehouseCode"    column="warehouse_code"    />
+        <result property="warehouseName"    column="warehouse_name"    />
+        <result property="locationId"    column="location_id"    />
+        <result property="locationCode"    column="location_code"    />
+        <result property="locationName"    column="location_name"    />
+        <result property="areaId"    column="area_id"    />
+        <result property="areaCode"    column="area_code"    />
+        <result property="areaName"    column="area_name"    />
+        <result property="enableFlag"    column="enable_flag"    />
+        <result property="remark"    column="remark"    />
+        <result property="attr1"    column="attr1"    />
+        <result property="attr2"    column="attr2"    />
+        <result property="attr3"    column="attr3"    />
+        <result property="attr4"    column="attr4"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+
+</mapper>
